@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Hafsa!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to top right, #ff9a9e, #fad0c4);
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            z-index: 1;
+        }
+        .message {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            z-index: 1;
+        }
+        .message h1 {
+            color: #4CAF50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: bounce 1s infinite;
+        }
+        .message p {
+            color: #333;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            color: #ffffff;
+            font-size: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            animation: slideIn 1s ease-out;
+        }
+        .countdown div {
+            margin: 0 10px;
+            text-align: center;
+        }
+        .countdown .time {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffeb3b;
+            transition: all 0.5s ease-in-out;
+            animation: pulse 1s infinite;
+        }
+        .countdown .label {
+            font-size: 1rem;
+            color: #ffffff;
+        }
+        .countdown h2 {
+            font-size: 1.5rem;
+            color: #ffeb3b;
+            margin: 10px 0;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="countdown" id="countdown">
+            <!-- Countdown timer will be displayed here -->
+        </div>
+        <div class="message" id="birthdayMessage">
+            <!-- The birthday message will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const birthday = new Date(now.getFullYear(), 8, 9); // 9th September
+            
+            if (now > birthday) {
+                document.getElementById('birthdayMessage').innerHTML = `
+                    <h1>Happy 18th Birthday Hafsa!</h1>
+                    <p>Wishing you a fantastic day filled with joy and laughter. May this special milestone be just the beginning of a wonderful journey ahead!</p>
+                    <p>Enjoy every moment of your special day!</p>
+                `;
+                document.getElementById('countdown').style.display = 'none';
+            } else {
+                const timeRemaining = birthday - now;
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = `
+                    <h2>Countdown to Hafsa's 18th Birthday!</h2>
+                    <div>
+                        <div class="time">${days}</div>
+                        <div class="label">Days</div>
+                    </div>
+                    <div>
+                        <div class="time">${hours}</div>
+                        <div class="label">Hours</div>
+                    </div>
+                    <div>
+                        <div class="time">${minutes}</div>
+                        <div class="label">Minutes</div>
+                    </div>
+                    <div>
+                        <div class="time">${seconds}</div>
+                        <div class="label">Seconds</div>
+                    </div>
+                `;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call to set the countdown immediately
+    </script>
+</body>
+</html>
